@@ -2,6 +2,18 @@
 from selenium import webdriver
 from time import sleep
 
+
+# Exception thrown every so often
+
+# Traceback (most recent call last):
+#  File "e:/Python/Python-RedditBot-Collab/RedditBot.py", line 19, in <module>
+#    go_to_subreddit(driver, subreddit_names[i])
+#  File "e:\Python\Python-RedditBot-Collab\Module3.py", line 20, in go_to_subreddit
+#    find_top_posts(driver)
+#  File "e:\Python\Python-RedditBot-Collab\Module3.py", line 10, in find_top_posts
+#    print(f"{i+1 }. {posts[i].text}")
+# IndexError: list index out of range
+
 def find_top_posts(driver):
     print("\nIn find_top function")
     posts = driver.find_elements_by_xpath('//h3[@class="_eYtD2XCVieq6emjKBH3m"]')

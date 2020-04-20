@@ -31,17 +31,25 @@ def login_subreddit(driver):
 
     time.sleep(4)
 
-    driver.find_element_by_xpath('//*[@id="SHORTCUT_FOCUSABLE_DIV"]/div[1]/header/div/div[1]/div[2]/button').click()
+
+
+    #subreddits = driver.find_elements_by_xpath('class="XEkFoehJNxIH9Wlr5Ilzd _2MgAHlPDdKvXiG-Qbz5cbC "')   
+    #
+def subreddit_name_provider(driver):
+
+    open_navigation = driver.find_element_by_xpath('//*[@id="SHORTCUT_FOCUSABLE_DIV"]/div[1]/header/div/div[1]/div[2]/button').click()
+    open_navigation
+   
 
     time.sleep(5)
 
-    #subreddits = driver.find_elements_by_xpath('class="XEkFoehJNxIH9Wlr5Ilzd _2MgAHlPDdKvXiG-Qbz5cbC "')                                                                                                      
     subreddits = driver.find_elements_by_xpath('//*[@class="_2aqH0n-kSzFY7HZZ5GL-Jb"]')                                                                                                      
 
-    leng = len(subreddits)
-    #for i in range(5,leng):
+    # leng = len(subreddits)
+    # for i in range(5,leng):
     #    print(subreddits[i].text)
     #    subreddit_list= subreddits[i].text
+
     subreddit_names = []
     for i,subreddit in enumerate(subreddits):
         if i>=5:
