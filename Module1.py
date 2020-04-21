@@ -1,6 +1,7 @@
 # open browser and log in
 from selenium import webdriver
 import time
+import loginInformation
 
 #driver = webdriver.Chrome()
 #chrome_options = webdriver.ChromeOptions()
@@ -12,11 +13,8 @@ def login_subreddit(driver):
     #driver.maximize_window()                                
     #time.sleep(10)
 
-    f=open("loginInformation.py","r")                                           #Reading username and passwords                    
-    lines=f.readlines()
-    username=lines[4].split('"')[1]                                                 
-    password=lines[5].split('"')[1]
-    f.close()
+    username = loginInformation.login_username
+    password = loginInformation.login_password
 
     time.sleep(2)                                                               #Giving time to load the page
 
@@ -34,7 +32,7 @@ def login_subreddit(driver):
 
 
     #subreddits = driver.find_elements_by_xpath('class="XEkFoehJNxIH9Wlr5Ilzd _2MgAHlPDdKvXiG-Qbz5cbC "')   
-    #
+    
 def subreddit_name_provider(driver):
 
     open_navigation = driver.find_element_by_xpath('//*[@id="SHORTCUT_FOCUSABLE_DIV"]/div[1]/header/div/div[1]/div[2]/button').click()
