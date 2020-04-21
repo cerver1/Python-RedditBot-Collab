@@ -37,7 +37,6 @@ def subreddit_name_provider(driver):
 
     open_navigation = driver.find_element_by_xpath('//*[@id="SHORTCUT_FOCUSABLE_DIV"]/div[1]/header/div/div[1]/div[2]/button').click()
     open_navigation
-   
 
     time.sleep(5)
 
@@ -50,7 +49,7 @@ def subreddit_name_provider(driver):
 
     subreddit_names = []
     for i,subreddit in enumerate(subreddits):
-        if i>=5:
+        if i>=5:                                                    #Skipping the subreddit names in favorite section
             subreddit_names.append(subreddit.text)
     
     return subreddit_names
