@@ -16,11 +16,25 @@ def post_upvote(driver):
     upvote_status
     sleep(1)
 
+def post_comment(driver):
+
+    sleep(2)
+    driver.find_element_by_xpath('//div[@class ="notranslate public-DraftEditor-content"]')\
+    .send_keys("Beautiful!!") # comment
+    sleep(4)
+    driver.find_element_by_xpath('//*[@id="overlayScrollContainer"]/div[2]/div[1]/div[2]/div[2]/div[2]/div/div/div[3]/div[1]/button').click() # confirm comment
+   
+
+    sleep(2)
+
+
+
 def vote_post(driver):
 
     # links = driver.find_elements_by_tag_name('a')
     # condition = lambda link: 'lake_louise' in link.get_attribute('href')
     # valid_links = list(filter(condition, links))
+
     sleep(2)
 
     # provides a list of links from each subreddit
@@ -32,8 +46,12 @@ def vote_post(driver):
         trimed_res = remove_prefix(destination, 'https://www.reddit.com')
         sleep(2)
         driver.find_element_by_xpath(f'//a[@data-click-id = "body" and @href = "{trimed_res}"]').click()
-        post_upvote(driver)
-        sleep(3)
+
+        post_upvote(driver) #upvote
+        post_comment(driver) #comment
+
+
+        sleep(2)
         close = driver.find_element_by_xpath("//button[@title = 'Close']").click()
         close
 
