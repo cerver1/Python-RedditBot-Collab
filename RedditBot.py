@@ -18,4 +18,4 @@ subreddit_names = subreddit_name_provider(driver)
 for i in range((len(subreddit_names))):
   go_to_subreddit(driver, subreddit_names[i])
 
-browser_close(driver)
+# browser_close(driver)

@@ -1,7 +1,7 @@
-# upvote post
 from selenium import webdriver
 from time import sleep
 from Module5 import check_score
+from Module4 import vote_post
 
 # Exception thrown every so often
 
@@ -26,8 +26,10 @@ def find_top_posts(driver):
     for i in range(5):                                                                      #Just storing top 5 posts
         post_dict[posts[i].text] = votes[i].text                                            #Storing the data in a dictoniary with key as post title and value as upvotes or score
 
-    print(post_dict)
-    check_score(post_dict)                                      #Calling function which will verify the score of the post and will do the needful 
+    # print(post_dict)
+    # check_score(post_dict)            
+    vote_post(driver) 
+                              #Calling function which will verify the score of the post and will do the needful 
 
         
         # posts[i].click()

@@ -2,6 +2,42 @@
 from selenium import webdriver
 from time import sleep
 
+
+def remove_prefix(text, prefix):
+    if text.startswith(prefix):
+        return text[len(prefix):]
+    return text
+
+def vote_post(driver):
+
+    # links = driver.find_elements_by_tag_name('a')
+    # condition = lambda link: 'lake_louise' in link.get_attribute('href')
+    # valid_links = list(filter(condition, links))
+    sleep(2)
+
+    # provides a list of links from each subreddit
+    links = driver.find_elements_by_xpath("//a[@data-click-id = 'body']")[:5]
+
+    for i in links:
+        sleep(3)
+        destination = i.get_attribute('href')
+        trimed_res = remove_prefix(destination, 'https://www.reddit.com')
+        sleep(2)
+        driver.find_element_by_xpath(f'//a[@data-click-id = "body" and @href = "{trimed_res}"]').click()
+        # //a[@data-click-id = 'body' and @href = '/r/EarthPorn/comments/g5oqtj/lake_louise_2436x1125_oc/']
+        sleep(3)
+        close = driver.find_element_by_xpath("//button[@title = 'Close']").click()
+        close
+
+        print(destination)
+    
+    #
+
+
+
+
+
+
 '''
 Remove this comment 
 

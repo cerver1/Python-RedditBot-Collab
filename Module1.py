@@ -1,4 +1,4 @@
-# open browser and log in
+#Log in and returns subreddit names
 from selenium import webdriver
 import time
 import loginInformation
