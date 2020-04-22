@@ -1,6 +1,6 @@
 #Log in and returns subreddit names
 from selenium import webdriver
-import time
+from time import sleep
 import loginInformation
 
 #driver = webdriver.Chrome()
@@ -16,7 +16,7 @@ def login_subreddit(driver):
     username = loginInformation.login_username
     password = loginInformation.login_password
 
-    time.sleep(2)                                                               #Giving time to load the page
+    sleep(2)                                                               #Giving time to load the page
 
 
     driver.find_element_by_xpath('/html/body/div/div/div[2]/div/form/div/fieldset[1]/input')\
@@ -27,7 +27,7 @@ def login_subreddit(driver):
 
     driver.find_element_by_xpath('//button[@class="AnimatedForm__submitButton"]').click()                               #Clicking the logging button
 
-    time.sleep(4)
+    sleep(4)
 
 
 
@@ -35,10 +35,12 @@ def login_subreddit(driver):
     
 def subreddit_name_provider(driver):
 
+    sleep(2)
+
     open_navigation = driver.find_element_by_xpath('//*[@id="SHORTCUT_FOCUSABLE_DIV"]/div[1]/header/div/div[1]/div[2]/button').click()
     open_navigation
 
-    time.sleep(5)
+    sleep(5)
 
     subreddits = driver.find_elements_by_xpath('//*[@class="_2aqH0n-kSzFY7HZZ5GL-Jb"]')                                                                                                      
 

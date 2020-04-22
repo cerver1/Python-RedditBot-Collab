@@ -8,6 +8,14 @@ def remove_prefix(text, prefix):
         return text[len(prefix):]
     return text
 
+def post_upvote(driver):
+    # upvotes each post
+    # condition to downvote needs to be added
+    sleep(2)
+    upvote_status = driver.find_element_by_xpath('/html/body/div[1]/div/div/div/div[3]/div/div/div/div[1]/div/div[1]/div[1]/button[1]').click()
+    upvote_status
+    sleep(1)
+
 def vote_post(driver):
 
     # links = driver.find_elements_by_tag_name('a')
@@ -24,13 +32,16 @@ def vote_post(driver):
         trimed_res = remove_prefix(destination, 'https://www.reddit.com')
         sleep(2)
         driver.find_element_by_xpath(f'//a[@data-click-id = "body" and @href = "{trimed_res}"]').click()
-        # //a[@data-click-id = 'body' and @href = '/r/EarthPorn/comments/g5oqtj/lake_louise_2436x1125_oc/']
+        post_upvote(driver)
         sleep(3)
         close = driver.find_element_by_xpath("//button[@title = 'Close']").click()
         close
 
         print(destination)
     
+
+
+
     #
 
 
