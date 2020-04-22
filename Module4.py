@@ -16,6 +16,9 @@ def post_upvote(driver):
     upvote_status
     sleep(1)
 
+
+# if we are blocked by the site from commenting skip to another post
+
 def post_comment(driver):
 
     sleep(2)
