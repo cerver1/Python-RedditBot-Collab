@@ -25,7 +25,7 @@ def add_data_excel(post):
         
     if(search_row == 0):                                                    #If the element is not present in the excel file
         #adding data to excel
-        sheet.append((post,0))                                              #Adding 0 just because append method takes a list of more than 1 value
+        sheet.append([post])                                              #Adding 0 just because append method takes a list of more than 1 value
         wb.save('reddit_posts.xlsx')                                        #Saving the file
 
         #We can call the upvote function from here since the entry is not present in excel file and the score is greater than 300 or any number
