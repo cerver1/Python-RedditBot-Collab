@@ -1,12 +1,7 @@
 # upvote
 from selenium import webdriver
 from time import sleep
-
-
-def remove_prefix(text, prefix):
-    if text.startswith(prefix):
-        return text[len(prefix):]
-    return text
+from Utilities import remove_prefix
 
 def post_upvote(driver):
     # upvotes each post
@@ -60,10 +55,6 @@ def vote_post(driver):
 
         print(destination)
     
-
-
-
-    #
 
 
 
