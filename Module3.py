@@ -1,7 +1,7 @@
 from selenium import webdriver
 from time import sleep
 from Module5 import check_score
-from Module4 import vote_post
+from Module4 import post_upvote
 from Utilities import remove_prefix
 
 def find_top_posts(driver, subreddit_name):
@@ -9,16 +9,35 @@ def find_top_posts(driver, subreddit_name):
 
     print(f"\nPosts from {subreddit_name}")
 
-    top_five_posts = driver.find_elements_by_xpath("//a[@data-click-id = 'body']")[:2]        # find all posts on the page
-    votes = driver.find_elements_by_xpath('//div[@class= "_1rZYMD_4xY3gRcSS3p8ODO"]')         # find all the scores of all the posts on the page
-    post_dict = {}
+    top_five_posts = driver.find_elements_by_xpath("//a[@data-click-id = 'body']")[:2]        # returns first 2 posts in the reddit
+    # votes = driver.find_elements_by_xpath('//div[@class= "_1rZYMD_4xY3gRcSS3p8ODO"]')         # find all the scores of all the posts on the page
+    # post_dict = {}
 
-    for i in range(2):
-                                                                              # Just storing top 5 posts                                       # Storing the data in a dictoniary with key as post title and value as upvotes or score
-        post_dict[top_five_posts[i].text] = votes[i].text  
+    got_to_post(driver, top_five_posts)
+
+    # for i in range(2):
+                                                                                                
+       # post_dict[top_five_posts[i].text] = votes[i].text    # Storing the data in a dictoniary with key as post title and value as upvotes or score
         
 
-    print(post_dict)
+def got_to_post(driver, top_five_posts):
+
+    for i in top_five_posts:
+        sleep(2)
+
+        trimed_link = remove_prefix(i.get_attribute('href'), 'https://www.reddit.com')
+        
+        sleep(2)
+        
+        open_subreddit_post = driver.find_element_by_xpath(f'//a[@data-click-id = "body" and @href = "{trimed_link}"]')
+        open_subreddit_post.click()
+
+        post_upvote(driver, trimed_link)
+
+        sleep(2)
+        close_subreddit_post = driver.find_element_by_xpath("//button[@title = 'Close']")
+        close_subreddit_post.click()
+
 
     # links = driver.find_elements_by_tag_name('a')
     # condition = lambda link: 'lake_louise' in link.get_attribute('href')
@@ -27,26 +46,6 @@ def find_top_posts(driver, subreddit_name):
     sleep(2)
 
     # provides a list of links from each subreddit
-    
-'''
-    for i in top_five_posts:
-        sleep(3)
-        destination = i.get_attribute('href')
-        trimed_res = remove_prefix(destination, 'https://www.reddit.com')
-        sleep(2)
-        driver.find_element_by_xpath(f'//a[@data-click-id = "body" and @href = "{trimed_res}"]').click()
-
-        post_upvote(driver) # upvote
-        post_comment(driver) # comment
-
-
-        sleep(2)
-        close = driver.find_element_by_xpath("//button[@title = 'Close']").click()
-        close
-
-        print(destination)
-
-'''
     # check_score(post_dict)            
     # vote_post(driver) 
                               #Calling function which will verify the score of the post and will do the needful 
