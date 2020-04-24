@@ -3,7 +3,7 @@ from Module4 import post_upvote
 from selenium import webdriver
 
 wb = openpyxl.load_workbook('reddit_posts.xlsx')               #This connected with the excel file
-sheet = wb.active          
+sheet = wb.active
 
 def check_score(post_dict, driver):
 

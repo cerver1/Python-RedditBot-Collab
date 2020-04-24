@@ -9,7 +9,6 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--disable-notifications")                      # This is to prevent the "Allow notification" dialog box which interferes with the code
 driver = webdriver.Chrome(chrome_options=chrome_options)
 
-
 login_subreddit(driver)
 
 subreddit_names = subreddit_name_provider(driver)
