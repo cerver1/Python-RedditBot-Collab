@@ -3,7 +3,7 @@ from selenium import webdriver
 from time import sleep
 from Utilities import remove_prefix
 
-def post_upvote(driver,trimed_link):
+def post_upvote(driver, trimed_link):
     # upvotes each post
     # condition to downvote needs to be added
     sleep(2)
@@ -11,8 +11,8 @@ def post_upvote(driver,trimed_link):
     upvote_button = driver.find_element_by_xpath('/html/body/div[1]/div/div/div/div[3]/div/div/div/div[1]/div/div[1]/div[1]/button[1]')
     upvote_status = upvote_button.get_attribute('aria-pressed')
     # regex needed of the post link, to join it to the upvote id
-    if str(upvote_status) == "false":
-        upvote_button.click
+    if upvote_status == "false":
+        upvote_button.click()
     else:
         print(trimed_link)
 
