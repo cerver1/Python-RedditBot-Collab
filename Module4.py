@@ -4,6 +4,12 @@ from time import sleep
 from Utilities import remove_prefix, comment_list
 from random import randint
 
+
+"""
+upvote and downvote selected posts
+
+"""
+
 def post_upvote(driver):
    
     sleep(2)

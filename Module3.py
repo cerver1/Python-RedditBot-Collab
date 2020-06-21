@@ -4,6 +4,13 @@ from Module5 import check_score
 from Module4 import post_upvote
 from Utilities import remove_prefix
 
+"""
+
+gets top two posts within the subreddit 
+
+"""
+
+
 def find_top_posts(driver, subreddit_name):
 
 
@@ -33,25 +40,8 @@ def got_to_post(driver, top_five_posts, votes):
         sleep(2)
         close_subreddit_post = driver.find_element_by_xpath("//button[@title = 'Close']")
         close_subreddit_post.click()
-    
-    # print(post_storage)
-
-    # links = driver.find_elements_by_tag_name('a')
-    # condition = lambda link: 'lake_louise' in link.get_attribute('href')
-    # valid_links = list(filter(condition, links))
 
     sleep(2)
-
-    # provides a list of links from each subreddit
-    # check_score(post_dict)            
-    # vote_post(driver) 
-                              #Calling function which will verify the score of the post and will do the needful 
-
-        
-        # posts[i].click()
-        # sleep(1)
-        # driver.find_elements_by_xpath('//*[@id="overlayScrollContainer"]/div[1]/div/div[2]/button').click()
-        # sleep(1)
 
 
 def go_to_subreddit(driver, subreddit_name):
