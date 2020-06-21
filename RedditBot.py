@@ -1,5 +1,3 @@
-# BotBrain
-
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from Module1 import login_subreddit , subreddit_name_provider

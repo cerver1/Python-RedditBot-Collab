@@ -28,18 +28,25 @@ def got_to_post(driver, top_five_posts, votes):
     post_storage = {}
 
     for i in top_five_posts:
-        sleep(2)
-        trimed_link = remove_prefix(i.get_attribute('href'), 'https://www.reddit.com')
-        post_storage[trimed_link] = votes[top_five_posts.index(i)].text 
-        
-        open_subreddit_post = driver.find_element_by_xpath(f'//a[@data-click-id = "body" and @href = "{trimed_link}"]')
-        open_subreddit_post.click()
+        try:
 
-        check_score(post_storage, driver)  # checks if the database contains the link, if so we've already been to that post
+            sleep(2)
+            trimed_link = remove_prefix(i.get_attribute('href'), 'https://www.reddit.com')
+            post_storage[trimed_link] = votes[top_five_posts.index(i)].text 
+            
+            sleep(1.2)
+            open_subreddit_post = driver.find_element_by_xpath(f'//a[@data-click-id = "body" and @href = "{trimed_link}"]')
+            sleep(0.5)
+            open_subreddit_post.click()
 
-        sleep(2)
-        close_subreddit_post = driver.find_element_by_xpath("//button[@title = 'Close']")
-        close_subreddit_post.click()
+            check_score(post_storage, driver)  # checks if the database contains the link, if so we've already been to that post
+
+            sleep(2)
+            close_subreddit_post = driver.find_element_by_xpath("//button[@title = 'Close']")
+            close_subreddit_post.click()
+        except:
+            
+            continue
 
     sleep(2)
 

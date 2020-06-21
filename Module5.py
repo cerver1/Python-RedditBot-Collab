@@ -15,9 +15,7 @@ def check_score(post_dict,driver):
 
     add_data_excel(post_dict,driver)
 
-"""
-fix the dictionary result in Module 3
-"""
+
 def add_data_excel(post_dict,driver):
     
     list_of_saved_links = []
