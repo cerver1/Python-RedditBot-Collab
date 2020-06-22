@@ -1,5 +1,9 @@
 <h1 align="center">Reddit Bot v1.0.1</h1>
 <p align="center">
+  
+<p align="center">
+  <img src="https://github.com/cerver1/Python-RedditBot-Collab/blob/master/RedditBotImage.png" width='100'>
+</p>
 
 <p align="center">⭐️ Star it | 🔱 Fork it on GitHub </p>
 <p align="center">
@@ -19,3 +23,4 @@
 ## Troubleshoot
 1. Microsoft Windows Only
 2. If you are facing any problems executing the source code then consider upgrading all your python packages. Upgrade your pip to the latest version using `python -m pip install --upgrade pip` and upgrade all your packages to latest versions using `pip install pip-upgrade-outdated`
+
