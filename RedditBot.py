@@ -1,9 +1,8 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from Module1 import login_subreddit , subreddit_name_provider
-from Module2 import browser_close
-from Module3 import go_to_subreddit
-from Module6 import browserConfig as mainDriver
+from LoginControl import login_subreddit , subreddit_name_provider
+from BrowserControl import browser_close, browserConfig as mainDriver
+from GetPost import go_to_subreddit 
 
 # Open browser
 driver = mainDriver()

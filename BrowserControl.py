@@ -1,10 +1,17 @@
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 from time import sleep
 
 """
-log out and close browser
+Browser
 
 """
+def browserConfig():
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument("--disable-notifications")
+    driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
+    return driver
 
 def browser_close(driver):
 
@@ -22,4 +29,6 @@ def browser_close(driver):
     sleep(1)
 
     driver.quit()
+
+
   

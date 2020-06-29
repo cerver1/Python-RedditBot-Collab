@@ -1,7 +1,7 @@
 from selenium import webdriver
 from time import sleep
-from Module5 import check_score
-from Module4 import post_upvote
+from DatabaseControl import check_score
+from UpvoteDownvote import post_upvote
 from Utilities import remove_prefix
 
 """

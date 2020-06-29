@@ -13,7 +13,7 @@ upvote and downvote selected posts
 def post_upvote(driver):
    
     sleep(1.5)
-    upvote_button = driver.find_element_by_xpath('//div[@class = "_1rZYMD_4xY3gRcSS3p8ODO"]//preceding-sibling::button')
+    upvote_button = driver.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[3]/div/div/div/div[1]/div/div[1]/div[1]/button[1]')
     sleep(0.5)
     upvote_status = upvote_button.get_attribute('aria-pressed')
     
@@ -22,6 +22,7 @@ def post_upvote(driver):
         if upvote_status == "false":
             sleep(0.5)
             upvote_button.click()
+            print('post upvoted!')
     except: 
         print('unable to upvote this post')
 
