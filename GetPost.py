@@ -60,4 +60,3 @@ def go_to_subreddit(driver, subreddit_name):
 
     sleep(5)
     driver.find_element_by_xpath('//*[@id="SHORTCUT_FOCUSABLE_DIV"]/div[1]/header/div/div[1]/div[2]/button').click()
-
