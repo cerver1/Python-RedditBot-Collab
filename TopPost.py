@@ -1,14 +1,19 @@
 from BrowserControl import browser_close, browserConfig as mainDriver
 from Utilities import comment_suffix as cs
-from numpy.random import randn
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 
+data = {'Comments' : [], 'Upvotes' : []}
+
 def convert_str_to_number(x):
     total_stars = 0
-    if 'k' in x:
+    if x == '•':
+        total_stars = 0
+    elif x == '':
+        total_stars = 0
+    elif 'k' in x:
         total_stars = float(x.replace('k', '')) * 1000  # convert k to a thousand
     elif 'm' in x:
         total_stars = float(x.replace('m', '')) * 1000000  # convert m to a million
@@ -17,50 +22,41 @@ def convert_str_to_number(x):
 
     return int(total_stars)
 
+def go_to_subreddit(driver):
+    userChoice = input('Please enter a subreddit you would like to visualize [ex: r/subreddit]')
 
-userChoice = input('Please enter a subreddit you would like to visualize [ex: r/subreddit]')
+    # add regex to ensure the format is correct
+    
+    driver.get("https://www.reddit.com/{}".format(userChoice.strip()))
 
-# add regex to ensure the format is correct
-
-driver = mainDriver()
-driver.get("https://www.reddit.com/{}".format(userChoice.strip()))
-data = {'Comments' : [], 'Upvotes' : []}
-'''
-
-                                    
-        data['Subscribers'].append(subscriber_count)
-        data['Online'].append(online_count)
-'''
-
-def find_top_posts(driver, subreddit_name):
-
-    print(f"\nPosts from {subreddit_name}")
-
-    # top_five_posts = driver.find_elements_by_xpath("//a[@data-click-id = 'body']//parent::div//parent::div//parent::div[@data-click-id= 'background']//span[@class = 'FHCV02u6Cp2zYL0fhQPsO'")[:5]
-    #top_five_comments = driver.find_elements_by_xpath("//a[@data-click-id = 'body']//parent::div//parent::div//parent::div[@data-click-id= 'background']//span[@class = 'FHCV02u6Cp2zYL0fhQPsO']")[:]
+    visualize_posts(driver, userChoice)
 
 
-    top_five_comments = driver.find_elements_by_xpath("//span[@class = 'FHCV02u6Cp2zYL0fhQPsO']")
-    top_five_votes = driver.find_elements_by_xpath("//div[@class = '_1rZYMD_4xY3gRcSS3p8ODO']")
-    for i in top_five_votes:
-        data['Upvotes'].append(i.text)
-    for i in 
 
-    print(data)
+def visualize_posts(driver, subreddit_name):
 
+    try:
+        print(f"\nPosts from {subreddit_name}")
 
-  
-'''
-    for post in range(9):
-        vote = post.get_attribute(top_five_votes).text
-        comment = post.get_attribute(top_five_comments[top_five_posts.index(post)]).text
-        data = {post.get_attribute('href') : (comment, vote)}
-        print(data)
-        # driver.find_elements_by_xpath("//div[@class = '_1E9mcoVn4MYnuBQSVDt1gC']//div[@class = '_1rZYMD_4xY3gRcSS3p8ODO']")
+        top_five_comments = driver.find_elements_by_xpath("//span[@class = 'FHCV02u6Cp2zYL0fhQPsO']")
+        top_five_votes = driver.find_elements_by_xpath("//div[@class = '_1rZYMD_4xY3gRcSS3p8ODO']")
+        for uv in top_five_votes:
+            data['Upvotes'].append(convert_str_to_number(uv.text))
+        for c in top_five_comments:
+            data['Comments'].append(convert_str_to_number(cs(c.text)))
 
-        # driver.find_elements_by_xpath("//span[@class = 'FHCV02u6Cp2zYL0fhQPsO']")
-'''
-find_top_posts(driver, userChoice)
+        df = pd.DataFrame(data)
+        df.plot.area(alpha=0.5)
+        plt.title("Graph depicting changes in upvotes and comment ratios")
+        plt.xlabel("post")
+        plt.ylabel("count")
+        plt.legend()
+        plt.show()
+
+    except:
+        print(f"\n Sorry I encountered a problem from {subreddit_name}")
+        visualize_posts(driver, userChoice)
+
 
 def get_upvote_comment():
     try:

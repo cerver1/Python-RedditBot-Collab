@@ -6,12 +6,13 @@ from GetPost import go_to_subreddit
 from SubscriberPlot import subscriber_plot
 from FollowPopularSubreddits import follow_popular
 from DiscoverSubreddit import discover_subreddit
+from TopPost import go_to_subreddit
 
 # Open browser
 driver = mainDriver()
 
 # Logs you into account 
-login_subreddit(driver)
+# login_subreddit(driver)
 
 # Gets the names of each subreddit
 #subreddit_names = subreddit_name_provider(driver)
@@ -33,3 +34,6 @@ for i in range((len(subreddit_names))):
 
 # Closes down the browser
 #browser_close(driver)
+
+# This function will allow you to visualize comment and vote ratio's from post within specific sub reddit.
+# go_to_subreddit(driver)
