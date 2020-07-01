@@ -16,8 +16,8 @@ def find_top_posts(driver, subreddit_name):
 
     print(f"\nPosts from {subreddit_name}")
 
-    top_five_posts = driver.find_elements_by_xpath("//a[@data-click-id = 'body']")[:2]
-    votes = driver.find_elements_by_xpath('//div[@class= "_1rZYMD_4xY3gRcSS3p8ODO"]')[:2]         # find all the scores of all the posts on the page
+    top_five_posts = driver.find_elements_by_xpath("//a[@data-click-id = 'body']")
+    votes = driver.find_elements_by_xpath('//div[@class= "_1rZYMD_4xY3gRcSS3p8ODO"]')        # find all the scores of all the posts on the page
   
     got_to_post(driver, top_five_posts, votes)
 

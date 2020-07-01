@@ -1,5 +1,9 @@
 from BrowserControl import browser_close, browserConfig as mainDriver
 from Utilities import comment_suffix as cs
+from numpy.random import randn
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def convert_str_to_number(x):
@@ -20,18 +24,34 @@ userChoice = input('Please enter a subreddit you would like to visualize [ex: r/
 
 driver = mainDriver()
 driver.get("https://www.reddit.com/{}".format(userChoice.strip()))
+data = {'Comments' : [], 'Upvotes' : []}
+'''
+
+                                    
+        data['Subscribers'].append(subscriber_count)
+        data['Online'].append(online_count)
+'''
 
 def find_top_posts(driver, subreddit_name):
 
     print(f"\nPosts from {subreddit_name}")
 
-    top_five_posts = driver.find_elements_by_xpath("//a[@data-click-id = 'body']//parent::div//parent::div//parent::div[@data-click-id= 'background']//span[@class = 'FHCV02u6Cp2zYL0fhQPsO'")[:5]
-    top_five_comments = driver.find_elements_by_xpath("//a[@data-click-id = 'body']//parent::div//parent::div//parent::div[@data-click-id= 'background']//span[@class = 'FHCV02u6Cp2zYL0fhQPsO']")[:]
-    
-    top_five_votes = driver.find_elements_by_xpath("//a[@data-click-id = 'body']//parent::div//parent::div//parent::div[@data-click-id= 'background']//preceding-sibling::div//div//div[@class = '_1rZYMD_4xY3gRcSS3p8ODO']")
+    # top_five_posts = driver.find_elements_by_xpath("//a[@data-click-id = 'body']//parent::div//parent::div//parent::div[@data-click-id= 'background']//span[@class = 'FHCV02u6Cp2zYL0fhQPsO'")[:5]
+    #top_five_comments = driver.find_elements_by_xpath("//a[@data-click-id = 'body']//parent::div//parent::div//parent::div[@data-click-id= 'background']//span[@class = 'FHCV02u6Cp2zYL0fhQPsO']")[:]
+
+
+    top_five_comments = driver.find_elements_by_xpath("//span[@class = 'FHCV02u6Cp2zYL0fhQPsO']")
+    top_five_votes = driver.find_elements_by_xpath("//div[@class = '_1rZYMD_4xY3gRcSS3p8ODO']")
+    for i in top_five_votes:
+        data['Upvotes'].append(i.text)
+    for i in 
+
+    print(data)
+
+
   
-    
-    for post in top_five_posts:
+'''
+    for post in range(9):
         vote = post.get_attribute(top_five_votes).text
         comment = post.get_attribute(top_five_comments[top_five_posts.index(post)]).text
         data = {post.get_attribute('href') : (comment, vote)}
@@ -39,7 +59,7 @@ def find_top_posts(driver, subreddit_name):
         # driver.find_elements_by_xpath("//div[@class = '_1E9mcoVn4MYnuBQSVDt1gC']//div[@class = '_1rZYMD_4xY3gRcSS3p8ODO']")
 
         # driver.find_elements_by_xpath("//span[@class = 'FHCV02u6Cp2zYL0fhQPsO']")
-
+'''
 find_top_posts(driver, userChoice)
 
 def get_upvote_comment():
@@ -60,9 +80,6 @@ def get_upvote_comment():
     return upvote_count, comment_count
 
 
-'''
-vote = get_upvote_comment()
 
-print(vote[0])
-print(vote[1])
-'''
+
+

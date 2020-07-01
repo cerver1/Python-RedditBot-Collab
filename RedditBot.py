@@ -28,8 +28,8 @@ for i in range((len(subreddit_names))):
 # This function will follow top 5 popular subreddits
 #follow_popular(driver)
 
-# This function will discover a new randome subreddit and subscribe to it
-discover_subreddit(driver)
+# This function will discover a new random subreddit and subscribe to it
+#discover_subreddit(driver)
 
 # Closes down the browser
 #browser_close(driver)
