@@ -21,8 +21,27 @@ userChoice = input('Please enter a subreddit you would like to visualize [ex: r/
 driver = mainDriver()
 driver.get("https://www.reddit.com/{}".format(userChoice.strip()))
 
+def find_top_posts(driver, subreddit_name):
 
-# need a method to grab the list of posts on the page - check old reference methods
+    print(f"\nPosts from {subreddit_name}")
+
+    top_five_posts = driver.find_elements_by_xpath("//a[@data-click-id = 'body']//parent::div//parent::div//parent::div[@data-click-id= 'background']//span[@class = 'FHCV02u6Cp2zYL0fhQPsO'")[:5]
+    top_five_comments = driver.find_elements_by_xpath("//a[@data-click-id = 'body']//parent::div//parent::div//parent::div[@data-click-id= 'background']//span[@class = 'FHCV02u6Cp2zYL0fhQPsO']")[:]
+    
+    top_five_votes = driver.find_elements_by_xpath("//a[@data-click-id = 'body']//parent::div//parent::div//parent::div[@data-click-id= 'background']//preceding-sibling::div//div//div[@class = '_1rZYMD_4xY3gRcSS3p8ODO']")
+  
+    
+    for post in top_five_posts:
+        vote = post.get_attribute(top_five_votes).text
+        comment = post.get_attribute(top_five_comments[top_five_posts.index(post)]).text
+        data = {post.get_attribute('href') : (comment, vote)}
+        print(data)
+        # driver.find_elements_by_xpath("//div[@class = '_1E9mcoVn4MYnuBQSVDt1gC']//div[@class = '_1rZYMD_4xY3gRcSS3p8ODO']")
+
+        # driver.find_elements_by_xpath("//span[@class = 'FHCV02u6Cp2zYL0fhQPsO']")
+
+find_top_posts(driver, userChoice)
+
 def get_upvote_comment():
     try:
 
@@ -39,3 +58,11 @@ def get_upvote_comment():
         return 'Unable to grab the the values from this post'
 
     return upvote_count, comment_count
+
+
+'''
+vote = get_upvote_comment()
+
+print(vote[0])
+print(vote[1])
+'''
